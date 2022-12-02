@@ -14,3 +14,22 @@ jobs:
       # virtual machine environment
       - checkout
       - run: Write-Host 'Hello, Windows'
+
+  setup-azure-cli: # name of your job
+    executor: win/default # executor type
+
+    steps:
+      - run:
+         command: |
+              Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+              Install-Module -Name Az -Scope CurrentUser -Repository PSGallery -Force -AllClobber
+              Uninstall-AzureRm
+         shell: powershell.exe
+
+workflows:
+    test:
+      jobs:
+          - build
+          - setup-azure-cli:
+              requires:
+                - build
