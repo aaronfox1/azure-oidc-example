@@ -22,7 +22,7 @@ jobs:
       - run:
          command: |
               Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
-              Install-Module -Name Az -Scope CurrentUser -Repository PSGallery -Force -AllClobber
+              Install-Module -Name Az -Scope CurrentUser -Repository PSGallery -Force
               Uninstall-AzureRm
          shell: powershell.exe
 
